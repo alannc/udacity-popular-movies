@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Udacity-Popular-Movies</string>
+    <string name="PopularMovies">Popular Movies</string>
+    <string name="Title">My Nanodegree Apps!</string>
+</resources>
