@@ -11,7 +11,7 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#ff6d7fe2"
+            android:background="@color/colorPrimary"
             app:contentInsetEnd="0dp"
             app:contentInsetStart="0dp">
             <TextView
@@ -20,7 +20,8 @@
                 android:text="Movie Details"
                 android:textColor="@color/primary_material_light"
                 android:textSize="18sp"
-                android:layout_margin="16dp"/>
+                android:layout_margin="16dp"
+                android:textStyle="bold"/>
         </android.support.v7.widget.Toolbar>
         <LinearLayout
             android:layout_width="wrap_content"

@@ -7,6 +7,11 @@ import android.widget.TextView;
 
 import com.facebook.drawee.view.SimpleDraweeView;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 /**
  * Created by alannnc on 9/10/15.
  */
@@ -17,7 +22,7 @@ public class MovieDetailActivity extends Activity {
     private String movieTitle;
     private String releaseDate;
     private String posterPath;
-    private int voteAverage;
+    private String voteAverage;
     private String overview;
 
     @Override
@@ -32,20 +37,20 @@ public class MovieDetailActivity extends Activity {
                 movieTitle = null;
                 releaseDate = null;
                 posterPath = null;
-                voteAverage = -1;
+                voteAverage = null;
                 overview = null;
             } else {
                 movieTitle = extras.getString("movieTitle");
                 releaseDate = extras.getString("releaseDate");
                 posterPath = extras.getString("posterPath");
-                voteAverage = Integer.parseInt(extras.getString("voteAverage"));
+                voteAverage = extras.getString("voteAverage");
                 overview = extras.getString("overview");
             }
         } else {
             movieTitle = (String) savedInstance.getSerializable("movieTitle");
             releaseDate = (String) savedInstance.getSerializable("releaseDate");
             posterPath = (String) savedInstance.getSerializable("posterPath");
-            voteAverage = (int) savedInstance.getSerializable("voteAverage");
+            voteAverage = (String) savedInstance.getSerializable("voteAverage");
             overview = (String) savedInstance.getSerializable("overview");
 
         }
@@ -55,10 +60,20 @@ public class MovieDetailActivity extends Activity {
         TextView voteAverage = (TextView) findViewById(R.id.voteAverage);
         TextView overview = (TextView) findViewById(R.id.overview);
         movieTitle.setText(this.movieTitle);
-        releaseDate.setText(this.releaseDate);
+        String strCurrentDate = this.releaseDate;
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        Date newDate = null;
+        try {
+            newDate = format.parse(strCurrentDate);
+            format = new SimpleDateFormat("MMM/dd/yyyy");
+            String date = format.format(newDate);
+            releaseDate.setText(date);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
         Uri imageUri = Uri.parse(IMAGE_BASE_URL + this.posterPath);
         posterPath.setImageURI(imageUri);
-        voteAverage.setText(String.valueOf(this.voteAverage));
+        voteAverage.setText(this.voteAverage);
         overview.setText(this.overview);
     }
 

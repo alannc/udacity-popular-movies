@@ -8,16 +8,17 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#ff6d7fe2"
+        android:background="@color/colorPrimary"
         app:contentInsetEnd="0dp"
         app:contentInsetStart="0dp">
-        <TextView
+
+        <Spinner
+            android:id="@+id/spinner_nav"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Popular Movies"
-            android:textColor="@color/primary_material_light"
-            android:textSize="18sp"
-            android:layout_margin="16dp"/>
+            android:layout_marginLeft="16dp"
+            />
+
     </android.support.v7.widget.Toolbar>
     <android.support.v7.widget.RecyclerView
         android:layout_height="match_parent"

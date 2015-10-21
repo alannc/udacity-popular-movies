@@ -38,7 +38,7 @@ public class RVMovieAdapter extends RecyclerView.Adapter<RVMovieAdapter.MovieVie
         String movieTitle;
         String releaseDate;
         String posterPath;
-        int voteAverage;
+        String voteAverage;
         String overview;
         private final Context context;
 
@@ -47,8 +47,6 @@ public class RVMovieAdapter extends RecyclerView.Adapter<RVMovieAdapter.MovieVie
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Log.d("CLICK", "Clicked");
-                    personName = (TextView)view.findViewById(R.id.person_name);
                     Intent myIntent = new Intent(context, MovieDetailActivity.class);
                     myIntent.putExtra("movieTitle", movieTitle ); //Optional parameters
                     myIntent.putExtra("releaseDate", releaseDate ); //Optional parameters
@@ -86,7 +84,7 @@ public class RVMovieAdapter extends RecyclerView.Adapter<RVMovieAdapter.MovieVie
         movieViewHolder.movieTitle = movies.get(i).getTitle();
         movieViewHolder.releaseDate = movies.get(i).getReleaseDate();
         movieViewHolder.posterPath = movies.get(i).getPosterPath();
-        movieViewHolder.voteAverage = movies.get(i).getVoteAverage();
+        movieViewHolder.voteAverage = movies.get(i).getVoteAverage().toString();
         movieViewHolder.overview = movies.get(i).getOverview();
     }
 
