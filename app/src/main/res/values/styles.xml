@@ -8,4 +8,73 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <!-- Toolbar-->
+    <!-- Toolbar Style -->
+    <style name="ToolbarStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@color/colorPrimary</item>
+    </style>
+
+    <!-- Toolbar Title Text -->
+    <style name="ToolbarTitle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/primary_material_light</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:layout_margin">16dp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <!-- activity_movie_details -->
+
+    <!-- Movie Title and other Details Linear Layout -->
+    <style name="MovieDetailsLinearLayout">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginLeft">8dp</item>
+        <item name="android:layout_marginTop">16dp</item>
+        <item name="android:orientation">vertical</item>
+    </style>
+
+    <!-- Linear Layour Wrap Content Wrap Content -->
+    <style name="LinearLayoutWpWp">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <!--  SimpleDrawee -->
+    <style name="MoviePoster">
+        <item name="android:layout_width">170dp</item>
+        <item name="android:layout_height">250dp</item>
+        <item name="android:scaleType">centerCrop</item>
+        <item name="android:layout_margin">16dp</item>
+    </style>
+
+    <!-- Movie Title and release date Style-->
+    <style name="MovieDetailText">
+        <item name="android:layout_width" >wrap_content</item>
+        <item name="android:layout_height" >wrap_content</item>
+        <item name="android:textSize" >16sp</item>
+        <item name="android:layout_marginTop" >5dp</item>
+        <item name="android:layout_marginRight" >16dp</item>
+    </style>
+
+    <!-- Vote average Text-->
+    <style name="VoteAverageText">\
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">5dp</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <!-- Dark Grey Separator -->
+    <style name="DarkGreySeparator">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1dp</item>
+        <item name="android:background">@android:color/darker_gray</item>
+    </style>
+
+
+
 </resources>

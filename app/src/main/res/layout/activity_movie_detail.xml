@@ -3,98 +3,81 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/colorPrimary"
+            style="@style/ToolbarStyle"
             app:contentInsetEnd="0dp"
             app:contentInsetStart="0dp">
+
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Movie Details"
-                android:textColor="@color/primary_material_light"
-                android:textSize="18sp"
-                android:layout_margin="16dp"
-                android:textStyle="bold"/>
+                style="@style/ToolbarTitle"
+                android:text="@string/movieDetailActivityTitle" />
         </android.support.v7.widget.Toolbar>
+
         <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/LinearLayoutWpWp"
             android:orientation="vertical">
+
             <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                style="@style/LinearLayoutWpWp"
                 android:orientation="horizontal">
+
                 <FrameLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
+                    style="@style/LinearLayoutWpWp">
+
                     <com.facebook.drawee.view.SimpleDraweeView
                         android:id="@+id/posterPath"
-                        android:layout_width="170dp"
-                        android:layout_height="250dp"
-                        android:scaleType="centerCrop"
-                        app:roundedCornerRadius="5dp"
-                        android:layout_margin="16dp"
-                        />
+                        style="@style/MoviePoster"
+                        app:roundedCornerRadius="5dp">
+                    </com.facebook.drawee.view.SimpleDraweeView>
                 </FrameLayout>
+
                 <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginLeft="8dp">
+                    style="@style/MovieDetailsLinearLayout">
+
                     <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
                         android:id="@+id/movieTitle"
-                        android:textStyle="bold"
-                        android:textSize="16sp"
-                        android:layout_marginTop="5dp"
-                        android:layout_marginRight="16dp"/>
+                        style="@style/MovieDetailText"
+                        android:textStyle="bold" />
+
                     <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
                         android:id="@+id/releaseDate"
-                        android:layout_marginTop="5dp"
-                        android:textSize="14sp"/>
+                        style="@style/VoteAverageText" />
+
                     <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        style="@style/LinearLayoutWpWp"
                         android:orientation="horizontal">
+
                         <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
                             android:id="@+id/voteAverageText"
-                            android:text="Vote Average:"
-                            android:layout_marginTop="5dp"
-                            android:textSize="14sp"/>
+                            android:text="@string/voteAverageText"
+                            style="@style/VoteAverageText"
+                            />
+
                         <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
                             android:id="@+id/voteAverage"
-                            android:layout_marginTop="5dp"
                             android:layout_marginLeft="4dp"
-                            android:textSize="14sp"/>
+                            style="@style/VoteAverageText"/>
                     </LinearLayout>
                 </LinearLayout>
 
             </LinearLayout>
 
         </LinearLayout>
+
         <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@android:color/darker_gray"/>
+            style="@style/DarkGreySeparator" />
+
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:id="@+id/overview"
-            android:layout_margin="16dp"/>
+            style="@style/VoteAverageText"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp"/>
     </LinearLayout>
 </ScrollView>

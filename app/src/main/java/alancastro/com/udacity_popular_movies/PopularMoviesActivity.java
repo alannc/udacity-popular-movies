@@ -3,9 +3,9 @@ package alancastro.com.udacity_popular_movies;
 import android.app.Activity;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.StaggeredGridLayoutManager;
-import android.support.v7.widget.Toolbar;
+
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -32,7 +32,7 @@ public class PopularMoviesActivity extends Activity {
     private static final String API_URL = "http://api.themoviedb.org/3";
     private static final String API_KEY = "6c586439d08f9cfbc64f4e5a92aa1408";
     private RecyclerView rv;
-    private StaggeredGridLayoutManager gaggeredGridLayoutManager;
+    private GridLayoutManager gridLayoutManager;
     private alancastro.com.udacity_popular_movies.api.moviesApi moviesApi;
 
     @Override
@@ -48,25 +48,16 @@ public class PopularMoviesActivity extends Activity {
         rv = (RecyclerView)findViewById(R.id.rv);
         rv.setHasFixedSize(true);
 
-        gaggeredGridLayoutManager = new StaggeredGridLayoutManager(2, 1);
-        rv.setLayoutManager(gaggeredGridLayoutManager);
-
-        //rv=(RecyclerView)findViewById(R.id.rv);
-
-        //LinearLayoutManager llm = new LinearLayoutManager(this);
-        //rv.setLayoutManager(llm);
-        //rv.setHasFixedSize(true);
-
-//        BackgroundTask task = new BackgroundTask();
-//        task.execute();
+        gridLayoutManager = new GridLayoutManager(this, 2);
+        rv.setLayoutManager(gridLayoutManager);
+        rv.setHasFixedSize(true);
 
     }
 
     private void setUpSpinner(){
-//        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.spinner_item, R.array.sort_movies);
         Spinner spinner = (Spinner) findViewById(R.id.spinner_nav);
         // Create an ArrayAdapter using the string array and a default spinner layout
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+        final ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.sort_movies, R.layout.spinner_item);
         // Specify the layout to use when the list of choices appears
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -76,27 +67,27 @@ public class PopularMoviesActivity extends Activity {
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
-                // your code here
                 Log.d("Spinner Clicked", String.valueOf(position));
                 if(position == 1){
                     rv.setAdapter(null);
                     BackgroundTask task = new BackgroundTask();
-                    task.execute();
+                    task.execute("Highest_Rated");
                 }else{
                     rv.setAdapter(null);
+                    BackgroundTask task = new BackgroundTask();
+                    task.execute("Popular");
                 }
 
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parentView) {
-                // your code here
             }
 
         });
     }
 
-    private class BackgroundTask extends AsyncTask<Void, Void, String> {
+    private class BackgroundTask extends AsyncTask<String, Void, String> {
 
         @Override
         protected void onPreExecute() {
@@ -104,7 +95,7 @@ public class PopularMoviesActivity extends Activity {
         }
 
         @Override
-        protected String doInBackground(Void... params) {
+        protected String doInBackground(String... params) {
             Gson gson = new GsonBuilder()
                     .registerTypeAdapterFactory(new ItemTypeAdapterFactory()) // This is the important line ;)
                     .setDateFormat("yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'SSS'Z'")
@@ -117,19 +108,35 @@ public class PopularMoviesActivity extends Activity {
                     .build();
 
             moviesApi = restAdapter.create(alancastro.com.udacity_popular_movies.api.moviesApi.class);
+            if (params[0].toString() == "Highest_Rated") {
+                moviesApi.getHighestRated(API_KEY, new Callback<List<movieModel>>() {
+                    @Override
+                    public void success(List<movieModel> movieModel, Response response) {
+                        RVMovieAdapter adapter = new RVMovieAdapter(movieModel);
+                        rv.setAdapter(adapter);
+                    }
 
-            moviesApi.getFeed(API_KEY, new Callback<List<movieModel>>() {
-                @Override
-                public void success(List<movieModel> gitmodel, Response response) {
-                    RVMovieAdapter adapter = new RVMovieAdapter(gitmodel);
-                    rv.setAdapter(adapter);
-                }
+                    @Override
+                    public void failure(RetrofitError error) {
+                        Log.i("FAILURE", error.getMessage());
+                    }
+                });
+            } else {
+                moviesApi.getPopular(API_KEY, new Callback<List<movieModel>>() {
+                    @Override
+                    public void success(List<movieModel> movieModel, Response response) {
+                        RVMovieAdapter adapter = new RVMovieAdapter(movieModel);
+                        rv.setAdapter(adapter);
+                        rv.scrollToPosition(1000);
+                        rv.invalidateItemDecorations();
+                    }
 
-                @Override
-                public void failure(RetrofitError error) {
-                    Log.i("FAILURE", error.getMessage());
-                }
-            });
+                    @Override
+                    public void failure(RetrofitError error) {
+                        Log.i("FAILURE", error.getMessage());
+                    }
+                });
+            }
 
             return "success";
         }

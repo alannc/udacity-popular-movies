@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.net.Uri;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,8 +32,8 @@ public class RVMovieAdapter extends RecyclerView.Adapter<RVMovieAdapter.MovieVie
     public static class MovieViewHolder extends RecyclerView.ViewHolder{
 
         CardView cv;
-        TextView personName;
-        SimpleDraweeView personPhoto;
+        TextView movieName;
+        SimpleDraweeView moviePoster;
         String movieTitle;
         String releaseDate;
         String posterPath;
@@ -48,18 +47,18 @@ public class RVMovieAdapter extends RecyclerView.Adapter<RVMovieAdapter.MovieVie
                 @Override
                 public void onClick(View view) {
                     Intent myIntent = new Intent(context, MovieDetailActivity.class);
-                    myIntent.putExtra("movieTitle", movieTitle ); //Optional parameters
-                    myIntent.putExtra("releaseDate", releaseDate ); //Optional parameters
-                    myIntent.putExtra("movieTitle", movieTitle ); //Optional parameters
-                    myIntent.putExtra("posterPath", posterPath ); //Optional parameters
-                    myIntent.putExtra("voteAverage", voteAverage ); //Optional parameters
-                    myIntent.putExtra("overview", overview ); //Optional parameters
+                    myIntent.putExtra("movieTitle", movieTitle); //Optional parameters
+                    myIntent.putExtra("releaseDate", releaseDate); //Optional parameters
+                    myIntent.putExtra("movieTitle", movieTitle); //Optional parameters
+                    myIntent.putExtra("posterPath", posterPath); //Optional parameters
+                    myIntent.putExtra("voteAverage", voteAverage); //Optional parameters
+                    myIntent.putExtra("overview", overview); //Optional parameters
                     context.startActivity(myIntent);
                 }
             });
             cv = (CardView)itemView.findViewById(R.id.cv);
-            personName = (TextView)itemView.findViewById(R.id.person_name);
-            personPhoto = (SimpleDraweeView)itemView.findViewById(R.id.person_photo);
+            movieName = (TextView)itemView.findViewById(R.id.person_name);
+            moviePoster = (SimpleDraweeView)itemView.findViewById(R.id.person_photo);
             context = itemView.getContext();
         }
     }
@@ -79,8 +78,8 @@ public class RVMovieAdapter extends RecyclerView.Adapter<RVMovieAdapter.MovieVie
     @Override
     public void onBindViewHolder(final MovieViewHolder movieViewHolder, int i) {
         Uri imageUri = Uri.parse(IMAGE_BASE_URL + movies.get(i).getPosterPath());
-        movieViewHolder.personName.setText(movies.get(i).getTitle());
-        movieViewHolder.personPhoto.setImageURI(imageUri);
+        movieViewHolder.movieName.setText(movies.get(i).getTitle());
+        movieViewHolder.moviePoster.setImageURI(imageUri);
         movieViewHolder.movieTitle = movies.get(i).getTitle();
         movieViewHolder.releaseDate = movies.get(i).getReleaseDate();
         movieViewHolder.posterPath = movies.get(i).getPosterPath();

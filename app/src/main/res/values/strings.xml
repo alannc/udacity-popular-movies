@@ -2,6 +2,8 @@
     <string name="app_name">Udacity-Popular-Movies</string>
     <string name="PopularMovies">Popular Movies</string>
     <string name="Title">My Nanodegree Apps!</string>
+    <string name="movieDetailActivityTitle">Movie Details</string>
+    <string name="voteAverageText">Vote Average:</string>
 
     <!-- Spinner Elements -->
     <string-array name="sort_movies">

@@ -11,7 +11,10 @@ import retrofit.http.Query;
  * Created by alannnc on 4/10/15.
  */
 public interface moviesApi {
-    @GET("/discover/movie?sort=popularity.desc")      //here is the other url part.best way is to start using /
-    public void getFeed(@Query("api_key") String api_key, Callback<List<movieModel>> response);
-    //response is the response from the server which is now in the POJO
+    @GET("/discover/movie?sort_by=popularity.desc")
+    void getPopular(@Query("api_key") String api_key, Callback<List<movieModel>> response);
+
+    @GET("/discover/movie?sort_by=vote_average.desc")
+    void getHighestRated(@Query("api_key") String api_key, Callback<List<movieModel>> response);
+
 }
