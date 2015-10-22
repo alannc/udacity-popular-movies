@@ -30,7 +30,7 @@ import retrofit.converter.GsonConverter;
  */
 public class PopularMoviesActivity extends Activity {
     private static final String API_URL = "http://api.themoviedb.org/3";
-    private static final String API_KEY = "6c586439d08f9cfbc64f4e5a92aa1408";
+    private static final String API_KEY = "YOUR_API_KEY";
     private RecyclerView rv;
     private StaggeredGridLayoutManager gaggeredGridLayoutManager;
     private alancastro.com.udacity_popular_movies.api.moviesApi moviesApi;
