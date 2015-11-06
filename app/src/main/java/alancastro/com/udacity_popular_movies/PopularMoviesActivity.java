@@ -17,7 +17,9 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import java.util.List;
+import java.util.Objects;
 
+import alancastro.com.udacity_popular_movies.adapter.RVMovieAdapter;
 import alancastro.com.udacity_popular_movies.model.movieModel;
 import retrofit.Callback;
 import retrofit.RestAdapter;
@@ -30,7 +32,7 @@ import retrofit.converter.GsonConverter;
  */
 public class PopularMoviesActivity extends Activity {
     private static final String API_URL = "http://api.themoviedb.org/3";
-    private static final String API_KEY = "YOUR_API_KEY";
+    private static final String API_KEY = "6c586439d08f9cfbc64f4e5a92aa1408";
     private RecyclerView rv;
     private GridLayoutManager gridLayoutManager;
     private alancastro.com.udacity_popular_movies.api.moviesApi moviesApi;
@@ -46,11 +48,11 @@ public class PopularMoviesActivity extends Activity {
         setUpSpinner();
 
         rv = (RecyclerView)findViewById(R.id.rv);
-        rv.setHasFixedSize(true);
 
         gridLayoutManager = new GridLayoutManager(this, 2);
         rv.setLayoutManager(gridLayoutManager);
         rv.setHasFixedSize(true);
+
 
     }
 
@@ -108,7 +110,7 @@ public class PopularMoviesActivity extends Activity {
                     .build();
 
             moviesApi = restAdapter.create(alancastro.com.udacity_popular_movies.api.moviesApi.class);
-            if (params[0].toString() == "Highest_Rated") {
+            if (Objects.equals(params[0], "Highest_Rated")) {
                 moviesApi.getHighestRated(API_KEY, new Callback<List<movieModel>>() {
                     @Override
                     public void success(List<movieModel> movieModel, Response response) {
@@ -127,8 +129,6 @@ public class PopularMoviesActivity extends Activity {
                     public void success(List<movieModel> movieModel, Response response) {
                         RVMovieAdapter adapter = new RVMovieAdapter(movieModel);
                         rv.setAdapter(adapter);
-                        rv.scrollToPosition(1000);
-                        rv.invalidateItemDecorations();
                     }
 
                     @Override

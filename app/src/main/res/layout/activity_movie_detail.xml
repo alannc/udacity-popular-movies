@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical">
 
         <android.support.v7.widget.Toolbar
@@ -21,7 +21,8 @@
         </android.support.v7.widget.Toolbar>
 
         <LinearLayout
-            style="@style/LinearLayoutWpWp"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
             android:orientation="vertical">
 
             <LinearLayout
@@ -79,5 +80,64 @@
             style="@style/VoteAverageText"
             android:layout_marginLeft="12dp"
             android:layout_marginRight="12dp"/>
+
+        <View
+            android:layout_marginTop="5dp"
+            style="@style/DarkGreySeparator" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="280dp"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Trailers"
+                android:textStyle="bold"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:textSize="16sp"/>
+
+            <android.support.v7.widget.RecyclerView
+                android:layout_marginTop="5dp"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:id="@+id/rvTrailers"
+                android:scrollbars="vertical">
+
+            </android.support.v7.widget.RecyclerView>
+
+        </LinearLayout>
+
+        <View
+            android:layout_marginTop="5dp"
+            style="@style/DarkGreySeparator" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Reviews"
+                android:textStyle="bold"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:textSize="16sp"/>
+
+            <android.support.v7.widget.RecyclerView
+                android:layout_marginTop="5dp"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:id="@+id/rvReviews"
+                android:scrollbars="vertical">
+
+            </android.support.v7.widget.RecyclerView>
+
+        </LinearLayout>
     </LinearLayout>
+
 </ScrollView>
